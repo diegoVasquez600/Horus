@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:helpers="clr-namespace:Horus.Helpers" xmlns:viewmodels="clr-namespace:Horus.ViewModels"
+             x:Class="Horus.Views.Login">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <pancakeview:PancakeView CornerRadius="0,0,32,32" BackgroundColor="Black" HeightRequest="260">
+                    <Grid>
+                        <Image Source="background.jpg" Aspect="AspectFill"/>
+                        <StackLayout Margin="30" Background="background.jpg">
+                            <Label Text="Bienvenido a" TextColor="White" FontSize="22" VerticalOptions="EndAndExpand"/>
+                            <Image Source="logo_w.png" HeightRequest="30" Aspect="AspectFit" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+                        </StackLayout>
+                    </Grid>
+                </pancakeview:PancakeView>
+                <Label Margin="50,40,50,0" Text="Email" TextColor="DarkGray"/>
+                <Frame Margin="45,5,45,10" CornerRadius="18" BackgroundColor="{StaticResource inputBackgroundColor}" Padding="5,0,5,0">
+                    <helpers:XEntry Text="{Binding Username}" Keyboard="Email" Placeholder="hello@horus.com" x:Name="txtEmail"/>
+                </Frame>
+                <Label Margin="50,0,50,0" Text="Contraseña" TextColor="DarkGray"/>
+                <Frame Margin="45,5,45,10" CornerRadius="18" BackgroundColor="{StaticResource inputBackgroundColor}" Padding="5,0,10,0">
+                    <StackLayout Orientation="Horizontal">
+                        <helpers:XEntry Text="{Binding Password}" Placeholder="Contraseña" IsPassword="True" x:Name="txtPassword"/>
+                        <Image HorizontalOptions="EndAndExpand" Source="eye_b.png" x:Name="passwordIcon">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="PasswordIcon_Clicked"
+                                    NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Label Margin="50,0,50,0" Text="¿Olvidaste tu Contraseña" TextColor="DarkGray">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ForgotPassword_Tapped" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Button Command="{Binding LoginCommand}" WidthRequest="500" HorizontalOptions="Center" Text="Login" TextColor="White" BackgroundColor="{StaticResource LoginButtonBackgroundColor}" CornerRadius="15" Margin="50,30,50,20"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <ImageButton x:Name="instagramButton" Clicked="InstagramButton_Clicked" Margin="0,0,30,0" HorizontalOptions="Center" Padding="10" Source="instagram_g.png" CornerRadius="100" BackgroundColor="{StaticResource inputBackgroundColor}"/>
+                    <ImageButton x:Name="facebookButton" Clicked="FacebookButton_Clicked" HorizontalOptions="Center" Padding="10" Source="facebook_g.png" CornerRadius="100" BackgroundColor="{StaticResource inputBackgroundColor}"/>
+                </StackLayout>
+                <BoxView HeightRequest="0.5" WidthRequest="500"  BackgroundColor="{StaticResource inputBackgroundColor}" HorizontalOptions="CenterAndExpand" Margin="50,20,50,10" />
+                <Button WidthRequest="500" HorizontalOptions="Center" Text="Registrarme" TextColor="{StaticResource SecondaryTextColor}" BackgroundColor="{StaticResource inputBackgroundColor}" CornerRadius="15" Margin="50,15,50,20" x:Name="registerButton" Clicked="registerButton_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

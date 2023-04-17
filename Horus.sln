@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horus.Android", "Horus\Horu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horus.iOS", "Horus\Horus.iOS\Horus.iOS.csproj", "{A6E922A5-D37A-49B2-902A-A768BB5F05BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horus", "Horus\Horus\Horus.csproj", "{97103A81-76B1-4862-A864-3DC865461EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Horus", "Horus\Horus\Horus.csproj", "{97103A81-76B1-4862-A864-3DC865461EF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C0F4D33-5F3A-492B-8626-1787EC621062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
