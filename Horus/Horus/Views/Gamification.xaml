@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Horus.Views.Gamification" BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Retos" FontSize="24" TextColor="{StaticResource TitleTextColor}" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand"
+                   FontAttributes="Bold" Margin="20,10,20,20"/>
+                <Label HorizontalOptions="EndAndExpand" Margin="20,20,20,20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="3" FontSize="14" TextColor="{StaticResource LoginButtonBackgroundColor}"/>
+                                <Span Text="/20" FontSize="14" TextColor="{StaticResource TitleTextColor}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

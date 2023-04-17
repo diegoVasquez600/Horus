@@ -17,7 +17,7 @@ namespace Horus.Views
         public Login()
         {
             InitializeComponent();
-            //BindingContext = new LoginViewModel();
+            BindingContext = new LoginViewModel(Navigation);
         }
 
         private void PasswordIcon_Clicked(object sender, EventArgs e)

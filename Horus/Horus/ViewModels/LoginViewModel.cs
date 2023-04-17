@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Horus.Models;
+using Horus.Services;
+using Horus.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Horus.ViewModels
@@ -9,6 +13,7 @@ namespace Horus.ViewModels
     {
         private string _username;
         private string _password;
+        private readonly DataStoreLogin _dataStoreLogin;
 
         public string Username
         {
@@ -35,33 +40,47 @@ namespace Horus.ViewModels
                 }
             }
         }
-
+        private readonly INavigation _navigation;
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(INavigation navigation)
         {
-            LoginCommand = new Command(Login);
+            _dataStoreLogin = new DataStoreLogin();
+            LoginCommand = new Command(LoginAsync);
+            _navigation = navigation;
         }
 
-        private void Login()
+        private async void LoginAsync()
         {
             try
             {
                 
-                string username = Username;
-                string password = Password;
-                if (username != null && password != null)
+                User user = new User()
+                {
+                    Email = Username,
+                    Password = Password
+                };
+
+                if (user.Email != null && user.Password != null)
                 {
                     // TODO: Implement login logic
+                    var response = await _dataStoreLogin.Login(user);
+                    if (response != null)
+                    {
+                        // Store AuthorizationToken 
+                        App.LoggedUser = response;
+                        var gamification = new Gamification();
+                        await _navigation.PushAsync(gamification);
+                    }
                 }
                 else
                 {
-                    Application.Current.MainPage.DisplayAlert("Login Fallido", "Debes llenar todos los campos", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Login Fallido", "Debes llenar todos los campos", "Ok");
                 }
             }
             catch (Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
                 throw new Exception(ex.Message);
             }
         }
