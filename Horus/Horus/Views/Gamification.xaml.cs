@@ -16,7 +16,7 @@ namespace Horus.Views
         public Gamification()
         {
             InitializeComponent();
-            BindingContext = new GamificationViewModel();
+           // BindingContext = new GamificationViewModel();
         }
     }
 }

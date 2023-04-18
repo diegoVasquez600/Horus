@@ -10,7 +10,7 @@ namespace Horus.ViewModels
 {
     public class GamificationViewModel : BaseViewModel
     {
-        private DataStoreChallenges _dataStoreChanlenges = new DataStoreChallenges();
+        private readonly DataStoreChallenges _dataStoreChanlenges;
 
         public GamificationViewModel()
         {
@@ -21,11 +21,11 @@ namespace Horus.ViewModels
 
         public ObservableCollection<Challenge> ChallengeCollection { get; set; }
 
-        public async void LoadChallengesAsync()
+        public void LoadChallengesAsync()
         {
             try
             {
-                var challenges = await _dataStoreChanlenges.GetChallengesAsync();
+                var challenges = _dataStoreChanlenges.GetChallengesAsync();
                 ChallengeCollection = new ObservableCollection<Challenge>(challenges);
             }
             catch (Exception ex)
