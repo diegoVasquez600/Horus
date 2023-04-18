@@ -10,23 +10,41 @@ namespace Horus.ViewModels
 {
     public class GamificationViewModel : BaseViewModel
     {
-        private readonly DataStoreChallenges _dataStoreChanlenges;
+        private readonly DataStoreChallenges _dataStoreChallenges;
 
         public GamificationViewModel()
         {
-            _dataStoreChanlenges = new DataStoreChallenges();
+            _dataStoreChallenges = new DataStoreChallenges();
             LoadChallengesAsync();
         }
 
 
         public ObservableCollection<Challenge> ChallengeCollection { get; set; }
+        public int CompletedChallenges { get; set; }
+        public int TotalChallenges { get; set; }
 
         public async void LoadChallengesAsync()
         {
             try
             {
-                var challenges = await _dataStoreChanlenges.GetChallengesAsync();
-                ChallengeCollection = new ObservableCollection<Challenge>(challenges);
+                int completedChallenges = 0;
+                int totalChallenges = 0;
+                var challenges = await _dataStoreChallenges.GetChallengesAsync();
+                ChallengeCollection = new ObservableCollection<Challenge>();
+                foreach (var item in challenges)
+                {
+                    ChallengeCollection.Add(item);
+                    if (item.Porcentage == 100) // check if challenge is completed
+                    {
+                        completedChallenges++;
+                    }
+                    totalChallenges++;
+                }
+                CompletedChallenges = completedChallenges;
+                TotalChallenges = totalChallenges;
+                OnPropertyChanged(nameof(CompletedChallenges));
+                OnPropertyChanged(nameof(ChallengeCollection));
+                OnPropertyChanged(nameof(TotalChallenges));
             }
             catch (Exception ex)
             {

@@ -15,39 +15,57 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="3" FontSize="14" TextColor="{StaticResource LoginButtonBackgroundColor}"/>
-                                    <Span Text="/20" FontSize="14" TextColor="{StaticResource TitleTextColor}"/>
+                                    <Span Text="{Binding CompletedChallenges}" FontSize="14" TextColor="{StaticResource LoginButtonBackgroundColor}"/>
+                                    <Span Text="/" FontSize="14" TextColor="{StaticResource TitleTextColor}"/>
+                                    <Span Text="{Binding TotalChallenges}" FontSize="14" TextColor="{StaticResource TitleTextColor}"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                <CollectionView HorizontalOptions="CenterAndExpand" Margin="20,0,20,0" ItemsSource="{Binding ChallengeCollection}">
+                <CollectionView BackgroundColor="White" HorizontalOptions="CenterAndExpand" Margin="20,0,20,20" ItemsSource="{Binding ChallengeCollection}" SelectionMode="Single">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="1" HorizontalItemSpacing="5" VerticalItemSpacing="5" />
+                        <GridItemsLayout Orientation="Vertical" Span="1" HorizontalItemSpacing="5" VerticalItemSpacing="10" />
                     </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="Center" >
+                            <Label Text="Cargando Retos..." FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" Margin="50,10,50,0"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Padding="8" Margin="20,0,20,20" CornerRadius="25" HasShadow="False" BackgroundColor="{StaticResource LoginButtonBackgroundColor}">
-                                <StackLayout>
-                                    <StackLayout Padding="20,10,20,10">
+                            <Frame Padding="8" Margin="20,0,20,0" CornerRadius="25" HasShadow="False" BackgroundColor="{Binding BackgroundColor}">
+                                <StackLayout Padding="20,10,20,10">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Title}" FontSize="16" TextColor="White" FontAttributes="Bold"/>
-                                            <Image Source="arrow_right_w.png" HorizontalOptions="EndAndExpand"/>
+                                            <Label Text="{Binding Title}" FontSize="16" TextColor="{Binding TitleColor}" FontAttributes="Bold"/>
+                                            <Image Source="{Binding Image}" HorizontalOptions="EndAndExpand"/>
                                         </StackLayout>
-                                        <Label Text="{Binding Description}" FontSize="12" TextColor="{StaticResource inputBackgroundColor}" />
-                                        <Label>
+                                        <Label Text="{Binding Description}" FontSize="12" TextColor="{Binding DescriptionColor}" />
+                                    <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                                        <Label HorizontalOptions="StartAndExpand" TextColor="{Binding DescriptionColor}">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <FormattedString.Spans>
-                                                        <Span Text="{Binding CurrentPoints}"/>
-                                                        <Span Text="/"/>
-                                                        <Span Text="{Binding TotalPoints}"/>
+                                                        <Span Text="{Binding CurrentPoints}" FontSize="12"/>
+                                                        <Span Text="/" FontSize="12"/>
+                                                        <Span Text="{Binding TotalPoints}" FontSize="12"/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label HorizontalOptions="EndAndExpand" TextColor="{Binding PorcentageColor}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding Porcentage}" FontSize="12" FontAttributes="Bold" />
+                                                        <Span Text="%" FontSize="12" FontAttributes="Bold" />
                                                     </FormattedString.Spans>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                     </StackLayout>
+                                    <ProgressBar BackgroundColor="Transparent" ProgressColor="{Binding PorcentageColor}"  Progress="{Binding Progress}"  HorizontalOptions="FillAndExpand" HeightRequest="20" Margin="0"/>
                                 </StackLayout>
                             </Frame>
                         </DataTemplate>
