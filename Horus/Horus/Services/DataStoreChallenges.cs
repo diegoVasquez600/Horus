@@ -24,32 +24,32 @@ namespace Horus.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"{App.LoggedUser.AuthorizationToken}");
         }
 
-        public List<Challenge> GetChallengesAsync()
+        public async Task<List<Challenge>> GetChallengesAsync()
         {
             try
             {
-                //var response = await _httpClient.GetStringAsync("Challenges");
-                //var challenges = JsonConvert.DeserializeObject<List<Challenge>>(response);
-                //return challenges;
-                return new List<Challenge>()
-                {
-                    new Challenge()
-                    {
-                        Id = "1",
-                        Title = "Invitar Amigos II",
-                        Description = "Invita a 10 amigos a participar en el proyecto para que compartan sus looks.",
-                        CurrentPoints = 47,
-                        TotalPoints = 50,
-                    },
-                    new Challenge()
-                    {
-                        Id = "2",
-                        Title = "Experta en Looks",
-                        Description = "Publica 50 looks y convertite en experta.",
-                        CurrentPoints = 10,
-                        TotalPoints = 10,
-                    }
-                };
+                var response = await _httpClient.GetStringAsync("Challenges");
+                var challenges = JsonConvert.DeserializeObject<List<Challenge>>(response);
+                return challenges;
+                //return new List<Challenge>()
+                //{
+                //    new Challenge()
+                //    {
+                //        Id = "1",
+                //        Title = "Invitar Amigos II",
+                //        Description = "Invita a 10 amigos a participar en el proyecto para que compartan sus looks.",
+                //        CurrentPoints = 47,
+                //        TotalPoints = 50,
+                //    },
+                //    new Challenge()
+                //    {
+                //        Id = "2",
+                //        Title = "Experta en Looks",
+                //        Description = "Publica 50 looks y convertite en experta.",
+                //        CurrentPoints = 10,
+                //        TotalPoints = 10,
+                //    }
+                //};
             }
             catch (Exception ex)
             {

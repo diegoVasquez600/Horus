@@ -21,11 +21,11 @@ namespace Horus.ViewModels
 
         public ObservableCollection<Challenge> ChallengeCollection { get; set; }
 
-        public void LoadChallengesAsync()
+        public async void LoadChallengesAsync()
         {
             try
             {
-                var challenges = _dataStoreChanlenges.GetChallengesAsync();
+                var challenges = await _dataStoreChanlenges.GetChallengesAsync();
                 ChallengeCollection = new ObservableCollection<Challenge>(challenges);
             }
             catch (Exception ex)
