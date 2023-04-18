@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Horus.ViewModels
 {
@@ -14,10 +15,24 @@ namespace Horus.ViewModels
         public GamificationViewModel()
         {
             _dataStoreChanlenges = new DataStoreChallenges();
+            LoadChallengesAsync();
         }
 
 
         public ObservableCollection<Challenge> ChallengeCollection { get; set; }
+
+        public async void LoadChallengesAsync()
+        {
+            try
+            {
+                var challenges = await _dataStoreChanlenges.GetChallengesAsync();
+                ChallengeCollection = new ObservableCollection<Challenge>(challenges);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 
