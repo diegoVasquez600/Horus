@@ -1,4 +1,5 @@
-﻿using Horus.ViewModels;
+﻿using Horus.Models;
+using Horus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,12 @@ namespace Horus.Views
         {
             InitializeComponent();
             BindingContext = new GamificationViewModel();
+        }
+
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (Challenge)e.CurrentSelection.FirstOrDefault();
+            await DisplayAlert("Reto", $"Reto Seleccionado {item.Title}", "OK");
         }
     }
 }

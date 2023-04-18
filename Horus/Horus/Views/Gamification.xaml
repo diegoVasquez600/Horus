@@ -23,7 +23,7 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                <CollectionView BackgroundColor="White" HorizontalOptions="CenterAndExpand" Margin="20,0,20,20" ItemsSource="{Binding ChallengeCollection}" SelectionMode="Single">
+                <CollectionView BackgroundColor="White" HorizontalOptions="CenterAndExpand" Margin="20,0,20,20" ItemsSource="{Binding ChallengeCollection}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="1" HorizontalItemSpacing="5" VerticalItemSpacing="10" />
                     </CollectionView.ItemsLayout>

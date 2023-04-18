@@ -72,6 +72,10 @@ namespace Horus.ViewModels
                         var gamification = new Gamification();
                         await _navigation.PushAsync(gamification);
                     }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Login Fallido", "Parece ser que el usuario o contraseña no son correctos, ¡Intentalo Nuevamente!", "Ok");
+                    }
                 }
                 else
                 {
